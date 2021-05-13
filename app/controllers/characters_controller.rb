@@ -3,6 +3,7 @@ class CharactersController < ApplicationController
 
   # GET /characters or /characters.json
   def index
+    
     @characters = Character.all
   end
 
@@ -25,7 +26,7 @@ class CharactersController < ApplicationController
 
     respond_to do |format|
       if @character.save
-        format.html { redirect_to @character, notice: "Character was successfully created." }
+        format.html { redirect_back fallback_location: root_url, notice: "Character was successfully created." }
         format.json { render :show, status: :created, location: @character }
       else
         format.html { render :new, status: :unprocessable_entity }
