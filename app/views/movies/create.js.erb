@@ -1,0 +1,14 @@
+var added_movie = $("<%= escape_javascript(render @movie) %>");
+
+added_movie.hide();
+
+$("#end_list").before(added_movie);
+
+added_movie.slideDown();
+
+
+
+
+
+
+

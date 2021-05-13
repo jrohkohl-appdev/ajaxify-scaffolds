@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
+    @movie = Movie.new
     @movies = Movie.all
   end
 
@@ -17,6 +18,10 @@ class MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /movies or /movies.json
@@ -25,8 +30,9 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to @movie, notice: "Movie was successfully created." }
+        format.html { redirect_back fallback_location: root_url, notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
+        format.js { render template: "movies/create.js.erb" }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
@@ -38,8 +44,9 @@ class MoviesController < ApplicationController
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        format.html { redirect_to @movie, notice: "Movie was successfully updated." }
+        format.html { redirect_back fallback_location: root_url, notice: "Movie was successfully updated." }
         format.json { render :show, status: :ok, location: @movie }
+        format.js { render template: "movies/update.js.erb" }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
@@ -53,6 +60,7 @@ class MoviesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
