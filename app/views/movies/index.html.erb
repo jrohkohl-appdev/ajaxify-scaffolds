@@ -17,20 +17,21 @@
   <tbody>
     <%= render 'form', movie: @movie %>
    
-    
-    <% @movies.each do |movie| %>
-      <tr>
-        <td id="<%= dom_id(movie) %>_title"><%= movie.title %></td>
-        <td id="<%= dom_id(movie) %>_description"><%= movie.description %></td>
-        <td id="<%= dom_id(movie) %>_duration"><%= pluralize(movie.duration, 'minute') %> </td>
-        <td id="<%= dom_id(movie) %>_year"><%= movie.year %></td>
-        <td id="<%= dom_id(movie) %>_name"><%= movie.director.name %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= render 'form_title', movie: movie %></td>
-      </tr>
-    <% end %>
+    <div id="movie_list">
+      <% @movies.each do |movie| %>
+        <tr id= "<%= dom_id(movie) %>">
+          <td id="<%= dom_id(movie) %>_title"><%= movie.title %></td>
+          <td id="<%= dom_id(movie) %>_description"><%= movie.description %></td>
+          <td id="<%= dom_id(movie) %>_duration"><%= pluralize(movie.duration, 'minute') %> </td>
+          <td id="<%= dom_id(movie) %>_year"><%= movie.year %></td>
+          <td id="<%= dom_id(movie) %>_name"><%= movie.director.name %></td>
+          <td><%= link_to 'Edit', edit_movie_path(movie), remote: true %></td>
+          <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+        </tr>
+      <% end %>
+    </div>
 
-    <tr id>
+    <tr id="end_list">
       <td>
         <%= link_to 'New Movie', new_movie_path %>
       </td>
@@ -41,7 +42,4 @@
 
 <br>
 
-<li id = "fake_item">
-  hi
-</div>
 

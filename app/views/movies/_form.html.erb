@@ -1,50 +1,52 @@
-<%= form_with(model: movie, local: false) do |form| %>
+<div id = "new_movie_form">
+  <%= form_with(model: movie, local: false) do |form| %>
 
-  <% if movie.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+    <% if movie.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
 
-      <ul>
-        <% movie.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+        <ul>
+          <% movie.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <tr>
+      <td>
+        <div class="field">
+          <%= form.text_field :title %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.text_area :description %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= form.number_field :duration %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+      
+          <%= form.number_field :year %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+
+          <%= form.text_field :director_id %>
+        </div>
+      </td>
+      <td>
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+      </td>
+    </tr>
   <% end %>
-
-
-  <tr>
-    <td>
-      <div class="field">
-        <%= form.text_field :title %>
-      </div>
-    </td>
-    <td>
-      <div class="field">
-        <%= form.text_area :description %>
-      </div>
-    </td>
-    <td>
-      <div class="field">
-        <%= form.number_field :duration %>
-      </div>
-    </td>
-    <td>
-      <div class="field">
-     
-        <%= form.number_field :year %>
-      </div>
-    </td>
-    <td>
-      <div class="field">
-
-        <%= form.text_field :director_id %>
-      </div>
-    </td>
-    <td>
-      <div class="actions">
-        <%= form.submit %>
-      </div>
-    </td>
-  </tr>
-<% end %>
+</div>

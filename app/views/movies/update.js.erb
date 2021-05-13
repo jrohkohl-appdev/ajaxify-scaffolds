@@ -1,0 +1,6 @@
+
+
+$("#<%= dom_id(@movie) %>").fadeToggle(500, function() {
+  $(this).replaceWith("<%= j(render @movie) %>");
+});
+

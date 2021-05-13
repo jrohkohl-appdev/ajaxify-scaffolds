@@ -1,11 +1,10 @@
+var added_movie = $("<%= escape_javascript(render @movie) %>");
 
+added_movie.hide();
 
-console.log("<%= @movie.title %>");
+$("#end_list").before(added_movie);
 
-
-var headings = $("#fake_item");
-
-
+added_movie.slideDown();
 
 
 
